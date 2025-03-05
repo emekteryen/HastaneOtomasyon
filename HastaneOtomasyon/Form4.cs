@@ -100,7 +100,7 @@ namespace HastaneOtomasyon
             int ilacid = int.Parse(dataGridView2.Rows[rowIndex].Cells["ilac_id"].Value.ToString());
             string ilacad = dataGridView2.Rows[rowIndex].Cells["ilac_ad"].Value.ToString();
             List<ilaclar> recete = new List<ilaclar>();
-            if (ilacad == null || ilacid == null)
+            if (ilacad == null || ilacid == 0)
             {
                 return;
             }

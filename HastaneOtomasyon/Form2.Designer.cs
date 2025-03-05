@@ -30,6 +30,10 @@
         {
             button1 = new Button();
             dataGridView1 = new DataGridView();
+            hasta_id = new DataGridViewTextBoxColumn();
+            ad = new DataGridViewTextBoxColumn();
+            soyad = new DataGridViewTextBoxColumn();
+            tc_no = new DataGridViewTextBoxColumn();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -37,10 +41,7 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
-            hasta_id = new DataGridViewTextBoxColumn();
-            ad = new DataGridViewTextBoxColumn();
-            soyad = new DataGridViewTextBoxColumn();
-            tc_no = new DataGridViewTextBoxColumn();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -64,6 +65,32 @@
             dataGridView1.TabIndex = 7;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            // 
+            // hasta_id
+            // 
+            hasta_id.Frozen = true;
+            hasta_id.HeaderText = "id";
+            hasta_id.Name = "hasta_id";
+            hasta_id.Width = 30;
+            // 
+            // ad
+            // 
+            ad.Frozen = true;
+            ad.HeaderText = "hasta ad";
+            ad.Name = "ad";
+            // 
+            // soyad
+            // 
+            soyad.Frozen = true;
+            soyad.HeaderText = "soyad";
+            soyad.Name = "soyad";
+            // 
+            // tc_no
+            // 
+            tc_no.Frozen = true;
+            tc_no.HeaderText = "tc no";
+            tc_no.Name = "tc_no";
+            tc_no.Width = 150;
             // 
             // label1
             // 
@@ -129,38 +156,23 @@
             button4.TabIndex = 14;
             button4.Text = "button4";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
-            // hasta_id
+            // textBox1
             // 
-            hasta_id.Frozen = true;
-            hasta_id.HeaderText = "id";
-            hasta_id.Name = "hasta_id";
-            hasta_id.Width = 30;
-            // 
-            // ad
-            // 
-            ad.Frozen = true;
-            ad.HeaderText = "hasta ad";
-            ad.Name = "ad";
-            // 
-            // soyad
-            // 
-            soyad.Frozen = true;
-            soyad.HeaderText = "soyad";
-            soyad.Name = "soyad";
-            // 
-            // tc_no
-            // 
-            tc_no.Frozen = true;
-            tc_no.HeaderText = "tc no";
-            tc_no.Name = "tc_no";
-            tc_no.Width = 150;
+            textBox1.Location = new Point(60, 160);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 15;
+            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(textBox1);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -192,5 +204,6 @@
         private DataGridViewTextBoxColumn ad;
         private DataGridViewTextBoxColumn soyad;
         private DataGridViewTextBoxColumn tc_no;
+        private TextBox textBox1;
     }
 }

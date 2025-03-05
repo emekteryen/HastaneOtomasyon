@@ -21,6 +21,112 @@ namespace HastaneOtomasyon
             InitializeComponent();
             this.doktor_id = doktor_id;
         }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            //string yatakhane = bolum;
+            doktorbilgi();
+            hastaListele();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentCell != null)
+            {
+                int rowIndex = dataGridView1.CurrentCell.RowIndex;
+                receteac(rowIndex);
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir satır seçin!");
+            }
+
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentCell != null)
+            {
+                int rowIndex = dataGridView1.CurrentCell.RowIndex;
+                hastabilgi(rowIndex);
+            }
+            else
+            {
+                MessageBox.Show("Lütfen geçerli bir satır seçin");
+            }
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentCell != null)
+            {
+                int rowIndex = dataGridView1.CurrentCell.RowIndex;
+                randevual(rowIndex);
+            }
+            else
+            {
+                MessageBox.Show("Lütfen geçerli bir satır seçiniz");
+            }
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            hastaara();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            hastaekle();
+        }
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+            receteac(e.RowIndex);
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) { return; }
+            //hastabilgi(e.RowIndex);
+        }
+        public void hastabilgi(int rowIndex)
+        {
+            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
+            //textBox3.Text = Convert.ToString(hastaid);
+            Form3 form3 = new Form3(hastaid);
+            form3.ShowDialog();
+        }
+        public void receteac(int rowIndex)
+        {
+            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
+            Form4 form4 = new Form4(hastaid);
+            form4.ShowDialog();
+        }
+        public void randevual(int rowIndex)
+        {
+            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
+            Form5 form5 = new Form5(hastaid, bolum, doktor_id);
+            form5.ShowDialog();
+        }
+        public void hastaekle()
+        {
+            Form6 form6 = new Form6(bolum);
+            form6.ShowDialog();
+        }
+        public void hastaara()
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "select * from hastalar where bolum_id=@bolum_id and tc_no like @tcno";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@bolum_id", bolum);
+                        cmd.Parameters.AddWithValue("@tc_no", "%" + textBox1.Text + "%");
+                    }
+                }
+            }
+            catch (Exception ex) { MessageBox.Show("Hata" + ex.Message); }
+        }
         public void hastaListele()
         {
             try
@@ -85,81 +191,13 @@ namespace HastaneOtomasyon
                 MessageBox.Show(ex.Message);
             }
         }
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            //string yatakhane = bolum;
-            doktorbilgi();
-            hastaListele();
-        }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (dataGridView1.CurrentCell != null)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                int rowIndex = dataGridView1.CurrentCell.RowIndex;
-                receteac(rowIndex);
-            }
-            else
-            {
-                MessageBox.Show("Lütfen bir satır seçin!");
-            }
-
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentCell != null)
-            {
-                int rowIndex = dataGridView1.CurrentCell.RowIndex;
-                hastabilgi(rowIndex);
-            }
-            else
-            {
-                MessageBox.Show("Lütfen geçerli bir satır seçin");
+                e.Handled = true;
             }
         }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentCell != null)
-            {
-                int rowIndex = dataGridView1.CurrentCell.RowIndex;
-                randevual(rowIndex);
-            }
-            else
-            {
-                MessageBox.Show("Lütfen geçerli bir satır seçiniz");
-            }
-        }
-
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1) return;
-            receteac(e.RowIndex);
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1) { return; }
-            //hastabilgi(e.RowIndex);
-        }
-        public void hastabilgi(int rowIndex)
-        {
-            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
-            //textBox3.Text = Convert.ToString(hastaid);
-            Form3 form3 = new Form3(hastaid);
-            form3.ShowDialog();
-        }
-        public void receteac(int rowIndex)
-        {
-            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
-            Form4 form4 = new Form4(hastaid);
-            form4.ShowDialog();
-        }
-        public void randevual(int rowIndex)
-        {
-            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
-            Form5 form5 = new Form5(hastaid,bolum,doktor_id);
-            form5.ShowDialog();
-        }
-
     }
 }

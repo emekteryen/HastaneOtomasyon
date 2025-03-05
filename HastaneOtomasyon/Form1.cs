@@ -18,31 +18,6 @@ namespace HastaneOtomasyon
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label1.BackColor = Color.White;
-            renkdegis();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-        public void renkdegis()
-        {
-            if (label1.BackColor == Color.White)
-            {
-
-                label1.ForeColor = Color.Red;
-                Thread.Sleep(200);
-                //renkdegis();
-            }
-            else
-            {
-
-                label1.ForeColor = Color.Black;
-                Thread.Sleep(200);
-                //renkdegis();
-            }
-            //renkdegis();
         }
         public async void giris()
         {
@@ -62,9 +37,10 @@ namespace HastaneOtomasyon
                             {
                                 MessageBox.Show("kullanýcý adý veya þifre hatalý");
                             }
-                            else 
+                            else
                             {
                                 doktor_id = int.Parse(reader["doktor_id"].ToString());
+                                MessageBox.Show("Hoþgeldiniz");
                                 Form2 form2 = new Form2(doktor_id);
                                 form2.ShowDialog();
                                 this.Close();
@@ -72,18 +48,19 @@ namespace HastaneOtomasyon
                         }
                     }
                 }
-                //this.Close();
-
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        private void label1_ForeColorChanged(object sender, EventArgs e)
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            renkdegis();
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
