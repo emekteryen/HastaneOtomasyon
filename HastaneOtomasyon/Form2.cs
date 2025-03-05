@@ -230,6 +230,7 @@ namespace HastaneOtomasyon
                 label4.BackColor = Color.Red;
             }
             else { label4.BackColor = Color.Transparent; }
+            KırmızıMı = !KırmızıMı;
         }
     }
 }

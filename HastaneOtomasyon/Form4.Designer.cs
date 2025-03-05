@@ -131,7 +131,7 @@
             Controls.Add(textBox1);
             Controls.Add(button2);
             Name = "Form4";
-            Text = "Form4";
+            Text = "İlaç Yaz";
             Load += Form4_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();

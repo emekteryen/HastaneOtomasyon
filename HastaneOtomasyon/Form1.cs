@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace HastaneOtomasyon
 {
@@ -19,6 +20,7 @@ namespace HastaneOtomasyon
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
             timer1.Start();
@@ -69,11 +71,13 @@ namespace HastaneOtomasyon
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            //label1.BackColor = kýrmýzýMý ? Color.Transparent : Color.Red;
             if (kýrmýzýMý)
             {
                 label1.BackColor = Color.Transparent;
             }
             else { label1.BackColor = Color.Red; }
+            kýrmýzýMý=!kýrmýzýMý;
         }
     }
 }

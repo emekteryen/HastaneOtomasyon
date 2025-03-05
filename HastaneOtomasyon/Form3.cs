@@ -67,7 +67,7 @@ namespace HastaneOtomasyon
                     string query = "select d.ad,d.soyad,r.randevu_tarihi,b.bolum_adi,d.ad from randevular r" +
                         " join doktorlar d on" +
                         " d.doktor_id=r.doktor_id join bolumler b on b.bolum_id=r.bolum_id where r.hasta_id=@hasta_id and " +
-                        "r.randevu_tarihi >@randevu_tarihi";
+                        "r.randevu_tarihi >@randevu_tarihi order by randevu_tarihi";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@hasta_id", hastaid);
@@ -95,7 +95,8 @@ namespace HastaneOtomasyon
                 {
                     con.Open();
                     string query = "select h.ad, h.soyad, i.ilac_ad, r.ilac_adet, r.recete_tarihi" +
-                        " from recete r join hastalar h on r.hasta_id=h.hasta_id join ilaclar i on r.ilac_id=i.ilac_id where r.hasta_id=@hasta_id";
+                        " from recete r join hastalar h on r.hasta_id=h.hasta_id join ilaclar i on r.ilac_id=i.ilac_id where r.hasta_id=@hasta_id" +
+                        " order by randevu_tarihi";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
                         cmd.Parameters.AddWithValue("@hasta_id", hastaid);
@@ -122,6 +123,7 @@ namespace HastaneOtomasyon
             {
                 int secim = dataGridView1.CurrentCell.RowIndex;
                 randevusil(secim);
+                
             }
             else { MessageBox.Show("Hata"); }
         }
@@ -136,9 +138,17 @@ namespace HastaneOtomasyon
                     string query = "delete from randevular where randevu_tarihi=@randevu_tarihi";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@ranedvu_tarihi",tarih);
+                        cmd.Parameters.AddWithValue("@randevu_tarihi",tarih);
+                        int sonuc = cmd.ExecuteNonQuery(); // Komutu çalıştır
+
+                        if (sonuc > 0)
+                            MessageBox.Show("Randevu başarıyla silindi.");
+                        else
+                            MessageBox.Show("Silinecek randevu bulunamadı.");
                     }
                 }
+                //dataGridView1.Rows.Clear();
+                randevugetir();
             }
             catch(Exception ex)
             { MessageBox.Show(ex.Message); }

@@ -49,9 +49,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(526, 182);
+            button1.Location = new Point(484, 120);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(75, 50);
             button1.TabIndex = 2;
             button1.Text = "reçete yaz";
             button1.UseVisualStyleBackColor = true;
@@ -61,9 +61,9 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { hasta_id, ad, soyad, tc_no });
-            dataGridView1.Location = new Point(62, 199);
+            dataGridView1.Location = new Point(44, 120);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(423, 226);
+            dataGridView1.Size = new Size(423, 218);
             dataGridView1.TabIndex = 7;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -97,7 +97,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(62, 22);
+            label1.Location = new Point(44, 22);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
             label1.TabIndex = 8;
@@ -106,7 +106,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(120, 22);
+            label2.Location = new Point(102, 22);
             label2.Name = "label2";
             label2.Size = new Size(38, 15);
             label2.TabIndex = 9;
@@ -115,7 +115,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(197, 22);
+            label3.Location = new Point(179, 22);
             label3.Name = "label3";
             label3.Size = new Size(38, 15);
             label3.TabIndex = 10;
@@ -124,7 +124,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(62, 142);
+            label4.Location = new Point(44, 63);
             label4.Name = "label4";
             label4.Size = new Size(71, 15);
             label4.TabIndex = 11;
@@ -132,9 +132,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(538, 224);
+            button2.Location = new Point(484, 176);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(75, 50);
             button2.TabIndex = 12;
             button2.Text = "hasta bilgi";
             button2.UseVisualStyleBackColor = true;
@@ -142,9 +142,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(552, 260);
+            button3.Location = new Point(484, 232);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(75, 50);
             button3.TabIndex = 13;
             button3.Text = "randevu ver";
             button3.UseVisualStyleBackColor = true;
@@ -152,9 +152,9 @@
             // 
             // button4
             // 
-            button4.Location = new Point(568, 295);
+            button4.Location = new Point(484, 288);
             button4.Name = "button4";
-            button4.Size = new Size(75, 23);
+            button4.Size = new Size(75, 50);
             button4.TabIndex = 14;
             button4.Text = "hasta ekle";
             button4.UseVisualStyleBackColor = true;
@@ -162,7 +162,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(60, 160);
+            textBox1.Location = new Point(42, 81);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 15;
@@ -177,7 +177,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(599, 387);
             Controls.Add(textBox1);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -189,7 +189,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(button1);
             Name = "Form2";
-            Text = "Form2";
+            Text = "Ana Sayfa";
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

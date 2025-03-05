@@ -109,7 +109,7 @@
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Name = "Form6";
-            Text = "Form6";
+            Text = "Hasta Kayıt";
             Load += Form6_Load;
             ResumeLayout(false);
             PerformLayout();

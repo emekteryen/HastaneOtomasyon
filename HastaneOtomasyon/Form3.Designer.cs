@@ -125,7 +125,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Form3";
-            Text = "Form3";
+            Text = "Bilgiler";
             Load += Form3_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();

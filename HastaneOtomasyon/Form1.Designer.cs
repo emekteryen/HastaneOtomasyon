@@ -83,6 +83,8 @@
             // 
             // timer1
             // 
+            timer1.Enabled = true;
+            timer1.Interval = 500;
             timer1.Tick += timer1_Tick;
             // 
             // label1
@@ -106,7 +108,7 @@
             Controls.Add(textBox1);
             Controls.Add(button1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "GİRİŞ";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -119,7 +121,7 @@
         private TextBox textBox2;
         private Label label2;
         private Label label3;
-        private System.Windows.Forms.Timer timer1;
         private Label label1;
+        public System.Windows.Forms.Timer timer1;
     }
 }

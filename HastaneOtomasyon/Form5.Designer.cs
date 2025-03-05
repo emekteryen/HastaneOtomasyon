@@ -44,6 +44,7 @@
             // 
             // dateTimePicker2
             // 
+            dateTimePicker2.CustomFormat = "";
             dateTimePicker2.Location = new Point(43, 79);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(200, 23);
@@ -71,13 +72,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(750, 174);
             Controls.Add(textBox1);
             Controls.Add(button1);
             Controls.Add(dateTimePicker2);
             Controls.Add(dateTimePicker1);
             Name = "Form5";
-            Text = "Form5";
+            Text = "Randevu Yaz";
             Load += Form5_Load;
             ResumeLayout(false);
             PerformLayout();
