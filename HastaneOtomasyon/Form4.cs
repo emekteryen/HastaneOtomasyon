@@ -17,6 +17,7 @@ namespace HastaneOtomasyon
         int hastaid;
         int rowIndex;
         int ilac_adet;
+        int ilacadedi;
         private readonly string connectionString = "server=localhost;database=hastane;user=root;pwd=";
         public Form4(int hastaid)
         {
@@ -26,11 +27,15 @@ namespace HastaneOtomasyon
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 comboBox1.Items.Add(i.ToString());
             }
             comboBox1.SelectedIndex = 0;
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            receteyaz();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -38,6 +43,18 @@ namespace HastaneOtomasyon
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            ilacgetir();
+        }
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView2.CurrentCell != null)
+            {
+                rowIndex = dataGridView2.CurrentCell.RowIndex;
+                ilacekle();
+            }
+        }
+        public void ilacgetir()
         {
             if (textBox1.Text == "")
             {
@@ -78,15 +95,7 @@ namespace HastaneOtomasyon
                 MessageBox.Show(ex.Message);
             }
         }
-        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridView2.CurrentCell != null)
-            {
-                rowIndex = dataGridView2.CurrentCell.RowIndex;
-                ilcekle();
-            }
-        }
-        public void ilcekle()
+        public void ilacekle()
         {
             int ilacid = int.Parse(dataGridView2.Rows[rowIndex].Cells["ilac_id"].Value.ToString());
             string ilacad = dataGridView2.Rows[rowIndex].Cells["ilac_ad"].Value.ToString();
@@ -99,24 +108,18 @@ namespace HastaneOtomasyon
             {
                 ilac_id = ilacid,
                 ilac_ad = ilacad,
-                ilac_adet = int.Parse(comboBox1.SelectedItem.ToString())
+                ilac_adet = ilacadedi
             };
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Cells["ilac_ad2"].Value != null && row.Cells["ilac_ad2"].Value.ToString() == ilacad)
                 {
-                    // Aynı ilaç varsa adetini artır
-                    int mevcutAdet = Convert.ToInt32(row.Cells["ilac_adet"].Value);
-                    row.Cells["ilac_adet"].Value = mevcutAdet + 1;
-                    return;  // Yeni satır eklemeye gerek yok, çık
+                    int mevcutAdet = Convert.ToInt32(row.Cells["ilac_adet2"].Value);
+                    row.Cells["ilac_adet2"].Value = mevcutAdet + ilacadedi;
+                    return;
                 }
             }
             dataGridView1.Rows.Add(recete1.ilac_id, recete1.ilac_ad, recete1.ilac_adet);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            receteyaz();
         }
         public void receteyaz()
         {
@@ -151,6 +154,27 @@ namespace HastaneOtomasyon
                 this.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ilacadedi = int.Parse(comboBox1.SelectedItem.ToString());
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+                int mevcut = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ilac_adet2"].Value);
+            dataGridView1.Rows[e.RowIndex].Cells["ilac_adet2"].Value = mevcut- 1;
+            int kalan = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ilac_adet2"].Value);
+            if (kalan==0)
+            {
+                dataGridView1.Rows.RemoveAt(e.RowIndex);
+            }
         }
     }
 }

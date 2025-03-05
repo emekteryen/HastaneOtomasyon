@@ -79,6 +79,8 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(354, 333);
             dataGridView1.TabIndex = 7;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // ilac_id2
             // 
@@ -127,6 +129,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 9;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // Form4
             // 
