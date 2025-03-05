@@ -44,6 +44,7 @@
             button4 = new Button();
             textBox1 = new TextBox();
             timer1 = new System.Windows.Forms.Timer(components);
+            button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { hasta_id, ad, soyad, tc_no });
             dataGridView1.Location = new Point(44, 120);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(423, 218);
+            dataGridView1.Size = new Size(423, 274);
             dataGridView1.TabIndex = 7;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
@@ -173,11 +174,22 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // button5
+            // 
+            button5.Location = new Point(484, 344);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 50);
+            button5.TabIndex = 16;
+            button5.Text = "hasta ekle";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(599, 387);
+            ClientSize = new Size(599, 478);
+            Controls.Add(button5);
             Controls.Add(textBox1);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -212,5 +224,6 @@
         private DataGridViewTextBoxColumn tc_no;
         private TextBox textBox1;
         private System.Windows.Forms.Timer timer1;
+        private Button button5;
     }
 }

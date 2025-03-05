@@ -28,6 +28,7 @@ namespace HastaneOtomasyon
             hastabilgi();
             randevugetir();
             recetegetir();
+            tanigetir();
         }
         public void hastabilgi()
         {
@@ -123,7 +124,7 @@ namespace HastaneOtomasyon
             {
                 int secim = dataGridView1.CurrentCell.RowIndex;
                 randevusil(secim);
-                
+
             }
             else { MessageBox.Show("Hata"); }
         }
@@ -138,7 +139,7 @@ namespace HastaneOtomasyon
                     string query = "delete from randevular where randevu_tarihi=@randevu_tarihi";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@randevu_tarihi",tarih);
+                        cmd.Parameters.AddWithValue("@randevu_tarihi", tarih);
                         int sonuc = cmd.ExecuteNonQuery(); // Komutu çalıştır
 
                         if (sonuc > 0)
@@ -150,8 +151,32 @@ namespace HastaneOtomasyon
                 //dataGridView1.Rows.Clear();
                 randevugetir();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             { MessageBox.Show(ex.Message); }
+        }
+        public void tanigetir()
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(constr))
+                {
+                    con.Open();
+                    string query = "select * from tanilar where hasta_id=@hasta_id";
+                    using(MySqlCommand cm = new MySqlCommand(query, con))
+                    {
+                        cm.Parameters.AddWithValue("@hasta_id", hastaid);
+                        using(MySqlDataAdapter da = new MySqlDataAdapter())
+                        {
+                            da.SelectCommand = cm;
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            dataGridView3.DataSource = dt;
+                        }
+                        
+                    }
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }

@@ -225,12 +225,19 @@ namespace HastaneOtomasyon
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(KırmızıMı)
+            if (KırmızıMı)
             {
                 label4.BackColor = Color.Red;
             }
             else { label4.BackColor = Color.Transparent; }
             KırmızıMı = !KırmızıMı;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
+            Form7 form7 = new Form7(hasta_id);
+            form7.ShowDialog();
         }
     }
 }
