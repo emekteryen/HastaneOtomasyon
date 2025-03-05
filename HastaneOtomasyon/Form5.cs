@@ -1,0 +1,109 @@
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace HastaneOtomasyon
+{
+    public partial class Form5 : Form
+    {
+        int hastaid;
+        int doktor_id;
+        int bolum;
+        DateTime randevusaat;
+        private readonly string constr = "server=localhost;database=hastane;user=root;pwd=;";
+        public Form5(int hastaid, int doktor_id, int bolum)
+        {
+            InitializeComponent();
+            this.hastaid = hastaid;
+            this.doktor_id = doktor_id;
+            this.bolum = bolum;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            saatal();
+            textBox1.Text = randevusaat.ToString();
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            saatal();
+            textBox1.Text = randevusaat.ToString();
+        }
+
+        private void Form5_Load(object sender, EventArgs e)
+        {
+            dateTimePicker2.CustomFormat = "HH:mm";
+            dateTimePicker2.ShowUpDown = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            saatal();
+            randevual();
+        }
+        public void saatal()
+        {
+            DateTime tarih = dateTimePicker1.Value.Date;
+            DateTime saat = dateTimePicker2.Value;
+            randevusaat = tarih.Add(saat.TimeOfDay);
+
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
+            //dateTimePicker2.Format = DateTimePickerFormat.Time;
+            //eğer sistem saatini kullanmak istemezsen aşağıdakini kullanabilirsin.
+            //yukardaki sistem saatin 12 li olursam eğer a.m p.m. cinsinden ayarlar
+            //aşağıdaki ise kenin saat düzlemi verdiğinden odlayı her türlü 24 saat olarak ayarlar
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "HH:mm";
+            dateTimePicker2.ShowUpDown = true;
+
+        }
+        public void randevual()
+        {
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(constr))
+                {
+                    con.Open();
+                    string query = "INSERT INTO randevular (bolum_id, doktor_id, hasta_id, randevu_tarihi) " +
+                                   "VALUES (@bolum_id, @doktor_id, @hasta_id, @randevu_tarihi)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@bolum_id", bolum);
+                        cmd.Parameters.AddWithValue("@doktor_id", doktor_id);
+                        cmd.Parameters.AddWithValue("@hasta_id", hastaid);
+                        cmd.Parameters.AddWithValue("@randevu_tarihi", randevusaat);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Randevu başarıyla eklendi.");
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Randevu eklenirken hata oluştu.");
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+    }
+}
