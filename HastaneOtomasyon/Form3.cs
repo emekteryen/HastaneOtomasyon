@@ -97,7 +97,7 @@ namespace HastaneOtomasyon
                     con.Open();
                     string query = "select h.ad, h.soyad, i.ilac_ad, r.ilac_adet, r.recete_tarihi" +
                         " from recete r join hastalar h on r.hasta_id=h.hasta_id join ilaclar i on r.ilac_id=i.ilac_id where r.hasta_id=@hasta_id" +
-                        " order by randevu_tarihi";
+                        " order by recete_tarihi";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
                         cmd.Parameters.AddWithValue("@hasta_id", hastaid);
@@ -161,7 +161,7 @@ namespace HastaneOtomasyon
                 using (MySqlConnection con = new MySqlConnection(constr))
                 {
                     con.Open();
-                    string query = "select * from tanilar where hasta_id=@hasta_id";
+                    string query = "select * from tani where hasta_id=@hasta_id";
                     using(MySqlCommand cm = new MySqlCommand(query, con))
                     {
                         cm.Parameters.AddWithValue("@hasta_id", hastaid);

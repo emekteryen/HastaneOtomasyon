@@ -235,8 +235,12 @@ namespace HastaneOtomasyon
 
         private void button5_Click(object sender, EventArgs e)
         {
+            if(dataGridView1.SelectedCells!=null) { int rowIndex= dataGridView1.CurrentCell.RowIndex; taniyaz(rowIndex); }
+        }
+        public void taniyaz(int rowIndex)
+        {
             int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
-            Form7 form7 = new Form7(hasta_id);
+            Form7 form7 = new Form7(hastaid);
             form7.ShowDialog();
         }
     }

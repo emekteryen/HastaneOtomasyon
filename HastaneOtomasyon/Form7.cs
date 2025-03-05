@@ -14,10 +14,10 @@ namespace HastaneOtomasyon
     {
         int hastaid;
         private readonly string constr = "server=localhost;database=hastane;user=root;pwd=";
-        public Form7(int hasta_id)
+        public Form7(int hastaid)
         {
             InitializeComponent();
-            this.hastaid = hasta_id;
+            this.hastaid = hastaid;
         }
 
         private void Form7_Load(object sender, EventArgs e)

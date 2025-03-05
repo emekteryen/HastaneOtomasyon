@@ -180,7 +180,7 @@
             button5.Name = "button5";
             button5.Size = new Size(75, 50);
             button5.TabIndex = 16;
-            button5.Text = "hasta ekle";
+            button5.Text = "Tanı yaz";
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
