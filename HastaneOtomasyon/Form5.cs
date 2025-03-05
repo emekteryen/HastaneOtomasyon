@@ -13,6 +13,8 @@ namespace HastaneOtomasyon
 {
     public partial class Form5 : Form
     {
+        DateTime tarih;
+        DateTime saat;
         int hastaid;
         int doktor_id;
         int bolum;
@@ -41,6 +43,13 @@ namespace HastaneOtomasyon
 
         private void Form5_Load(object sender, EventArgs e)
         {
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
+            //dateTimePicker2.Format = DateTimePickerFormat.Time;
+            //eğer sistem saatini kullanmak istemezsen aşağıdakini kullanabilirsin.
+            //yukardaki sistem saatin 12 li olursam eğer a.m p.m. cinsinden ayarlar
+            //aşağıdaki ise kenin saat düzlemi verdiğinden odlayı her türlü 24 saat olarak ayarlar
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.CustomFormat = "HH:mm";
             dateTimePicker2.ShowUpDown = true;
         }
@@ -52,19 +61,10 @@ namespace HastaneOtomasyon
         }
         public void saatal()
         {
-            DateTime tarih = dateTimePicker1.Value.Date;
-            DateTime saat = dateTimePicker2.Value;
-            randevusaat = tarih.Add(saat.TimeOfDay);
-
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
-            //dateTimePicker2.Format = DateTimePickerFormat.Time;
-            //eğer sistem saatini kullanmak istemezsen aşağıdakini kullanabilirsin.
-            //yukardaki sistem saatin 12 li olursam eğer a.m p.m. cinsinden ayarlar
-            //aşağıdaki ise kenin saat düzlemi verdiğinden odlayı her türlü 24 saat olarak ayarlar
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = "HH:mm";
-            dateTimePicker2.ShowUpDown = true;
+            tarih = dateTimePicker1.Value.Date;
+            saat = dateTimePicker2.Value;
+            TimeSpan zaman = new TimeSpan(saat.Hour, saat.Minute, 0);
+            randevusaat = tarih.Add(zaman);
 
         }
         public void randevual()
@@ -74,8 +74,17 @@ namespace HastaneOtomasyon
                 using (MySqlConnection con = new MySqlConnection(constr))
                 {
                     con.Open();
-                    string query = "INSERT INTO randevular (bolum_id, doktor_id, hasta_id, randevu_tarihi) " +
-                                   "VALUES (@bolum_id, @doktor_id, @hasta_id, @randevu_tarihi)";
+                    string query2 = "select * from randevular where randevu_tarihi=@randevu_tarihi and doktor_id=@doktor_id";
+                    using (MySqlCommand cmnd = new MySqlCommand(query2, con))
+                    {
+                        cmnd.Parameters.AddWithValue("@randevu_tarihi", randevusaat);
+                        cmnd.Parameters.AddWithValue("@doktor_id", doktor_id);
+                        using MySqlDataReader reader = cmnd.ExecuteReader();
+                        if (reader.Read()) { MessageBox.Show(randevusaat + " tarihinde zaten randevu verdiniz! Başka tarih seçin.");return; }
+                    }
+
+                        string query = "INSERT INTO randevular (bolum_id, doktor_id, hasta_id, randevu_tarihi) " +
+                                       "VALUES (@bolum_id, @doktor_id, @hasta_id, @randevu_tarihi)";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
