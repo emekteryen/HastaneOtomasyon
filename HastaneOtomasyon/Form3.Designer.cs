@@ -33,6 +33,8 @@
             label3 = new Label();
             dataGridView1 = new DataGridView();
             dataGridView2 = new DataGridView();
+            label4 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -40,7 +42,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(49, 36);
+            label1.Location = new Point(12, 9);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
             label1.TabIndex = 1;
@@ -49,7 +51,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(44, 70);
+            label2.Location = new Point(56, 9);
             label2.Name = "label2";
             label2.Size = new Size(38, 15);
             label2.TabIndex = 2;
@@ -58,7 +60,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(44, 96);
+            label3.Location = new Point(100, 9);
             label3.Name = "label3";
             label3.Size = new Size(38, 15);
             label3.TabIndex = 3;
@@ -67,24 +69,44 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(227, 50);
+            dataGridView1.Location = new Point(12, 72);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(204, 246);
+            dataGridView1.Size = new Size(425, 477);
             dataGridView1.TabIndex = 4;
             // 
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(485, 54);
+            dataGridView2.Location = new Point(485, 72);
             dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(245, 242);
+            dataGridView2.Size = new Size(489, 477);
             dataGridView2.TabIndex = 5;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(19, 49);
+            label4.Name = "label4";
+            label4.Size = new Size(38, 15);
+            label4.TabIndex = 6;
+            label4.Text = "label4";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(483, 46);
+            label5.Name = "label5";
+            label5.Size = new Size(38, 15);
+            label5.TabIndex = 7;
+            label5.Text = "label5";
             // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 337);
+            ClientSize = new Size(1012, 586);
+            Controls.Add(label5);
+            Controls.Add(label4);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
             Controls.Add(label3);
@@ -105,5 +127,7 @@
         private Label label3;
         private DataGridView dataGridView1;
         private DataGridView dataGridView2;
+        private Label label4;
+        private Label label5;
     }
 }

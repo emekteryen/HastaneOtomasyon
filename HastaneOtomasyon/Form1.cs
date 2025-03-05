@@ -19,17 +19,7 @@ namespace HastaneOtomasyon
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.BackColor = Color.White;
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = "HH:mm";
             renkdegis();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            DateTime date = dateTimePicker1.Value.Date;
-            DateTime time = dateTimePicker2.Value;
-            DateTime combinedDateTime = date.Add(time.TimeOfDay);
-            textBox1.Text = combinedDateTime.ToString();
         }
 
         private void label1_Click(object sender, EventArgs e)

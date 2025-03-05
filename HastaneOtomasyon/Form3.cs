@@ -23,6 +23,8 @@ namespace HastaneOtomasyon
         private void Form3_Load(object sender, EventArgs e)
         {
             //textBox1.Text = hastaid;
+            label4.Text = "randevular";
+            label5.Text = "reçeteler";
             hastabilgi();
             randevugetir();
             recetegetir();
@@ -62,7 +64,7 @@ namespace HastaneOtomasyon
                 using MySqlConnection conn = new MySqlConnection(constr);
                 {
                     conn.Open();
-                    string query = "select r.hasta_id,r.randevu_tarihi,b.bolum_adi,d.ad from randevular r" +
+                    string query = "select d.ad,d.soyad,r.randevu_tarihi,b.bolum_adi,d.ad from randevular r" +
                         " join doktorlar d on" +
                         " d.doktor_id=r.doktor_id join bolumler b on b.bolum_id=r.bolum_id where r.hasta_id=@hasta_id and " +
                         "r.randevu_tarihi >@randevu_tarihi";
@@ -113,5 +115,6 @@ namespace HastaneOtomasyon
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }

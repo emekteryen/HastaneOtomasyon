@@ -16,6 +16,7 @@ namespace HastaneOtomasyon
     {
         int hastaid;
         int rowIndex;
+        int ilac_adet;
         private readonly string connectionString = "server=localhost;database=hastane;user=root;pwd=";
         public Form4(int hastaid)
         {
@@ -25,6 +26,11 @@ namespace HastaneOtomasyon
 
         private void Form4_Load(object sender, EventArgs e)
         {
+            for (int i = 1; i < 10; i++)
+            {
+                comboBox1.Items.Add(i.ToString());
+            }
+            comboBox1.SelectedIndex = 0;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -93,8 +99,18 @@ namespace HastaneOtomasyon
             {
                 ilac_id = ilacid,
                 ilac_ad = ilacad,
-                ilac_adet = 1
+                ilac_adet = int.Parse(comboBox1.SelectedItem.ToString())
             };
+            foreach(DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells["ilac_ad2"].Value != null && row.Cells["ilac_ad2"].Value.ToString() == ilacad)
+                {
+                    // Aynı ilaç varsa adetini artır
+                    int mevcutAdet = Convert.ToInt32(row.Cells["ilac_adet"].Value);
+                    row.Cells["ilac_adet"].Value = mevcutAdet + 1;
+                    return;  // Yeni satır eklemeye gerek yok, çık
+                }
+            }
             dataGridView1.Rows.Add(recete1.ilac_id, recete1.ilac_ad, recete1.ilac_adet);
         }
 

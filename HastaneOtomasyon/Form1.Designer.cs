@@ -31,9 +31,6 @@
             button1 = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
-            button2 = new Button();
             label1 = new Label();
             SuspendLayout();
             // 
@@ -61,30 +58,6 @@
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 2;
             // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(90, 61);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 3;
-            // 
-            // dateTimePicker2
-            // 
-            dateTimePicker2.Location = new Point(79, 97);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(200, 23);
-            dateTimePicker2.TabIndex = 4;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(122, 208);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 5;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -102,9 +75,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(label1);
-            Controls.Add(button2);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(button1);
@@ -120,9 +90,6 @@
         private Button button1;
         private TextBox textBox1;
         private TextBox textBox2;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private Button button2;
         private Label label1;
     }
 }

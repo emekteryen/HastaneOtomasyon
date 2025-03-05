@@ -38,7 +38,7 @@
             dataGridView2 = new DataGridView();
             ilac_id = new DataGridViewTextBoxColumn();
             ilac_ad = new DataGridViewTextBoxColumn();
-            ilac_adet = new DataGridViewTextBoxColumn();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -65,7 +65,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(12, 54);
+            textBox1.Location = new Point(12, 23);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(238, 23);
             textBox1.TabIndex = 4;
@@ -77,7 +77,7 @@
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ilac_id2, ilac_ad2, ilac_adet2 });
             dataGridView1.Location = new Point(415, 83);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(354, 150);
+            dataGridView1.Size = new Size(354, 333);
             dataGridView1.TabIndex = 7;
             // 
             // ilac_id2
@@ -101,33 +101,39 @@
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { ilac_id, ilac_ad, ilac_adet });
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { ilac_id, ilac_ad });
             dataGridView2.Location = new Point(12, 83);
             dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(354, 150);
+            dataGridView2.Size = new Size(238, 333);
             dataGridView2.TabIndex = 8;
             dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // ilac_id
             // 
+            ilac_id.Frozen = true;
             ilac_id.HeaderText = "İlaç id";
             ilac_id.Name = "ilac_id";
             // 
             // ilac_ad
             // 
+            ilac_ad.Frozen = true;
             ilac_ad.HeaderText = "İlaç Adı";
             ilac_ad.Name = "ilac_ad";
             // 
-            // ilac_adet
+            // comboBox1
             // 
-            ilac_adet.HeaderText = "ilaç adedi";
-            ilac_adet.Name = "ilac_adet";
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(12, 55);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 9;
             // 
             // Form4
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(comboBox1);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
             Controls.Add(textBox1);
@@ -148,11 +154,11 @@
         private TextBox textBox1;
         private DataGridView dataGridView1;
         private DataGridView dataGridView2;
-        private DataGridViewTextBoxColumn ilac_id;
-        private DataGridViewTextBoxColumn ilac_ad;
-        private DataGridViewTextBoxColumn ilac_adet;
         private DataGridViewTextBoxColumn ilac_id2;
         private DataGridViewTextBoxColumn ilac_ad2;
         private DataGridViewTextBoxColumn ilac_adet2;
+        private DataGridViewTextBoxColumn ilac_id;
+        private DataGridViewTextBoxColumn ilac_ad;
+        private ComboBox comboBox1;
     }
 }
