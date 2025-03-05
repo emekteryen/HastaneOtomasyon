@@ -21,7 +21,6 @@ namespace HastaneOtomasyon
             InitializeComponent();
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             ekle();
@@ -50,10 +49,11 @@ namespace HastaneOtomasyon
                         cmd.ExecuteNonQuery();
                     }
                 }
+                this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Hata " +ex.Message);
+                MessageBox.Show("Hata " + ex.Message);
             }
         }
 

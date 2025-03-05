@@ -16,10 +16,14 @@ namespace HastaneOtomasyon
         private string connectionString = "server=localhost;database=hastane;user=root;pwd=;";
         int doktor_id;
         int bolum;
+        private bool KırmızıMı;
         public Form2(int doktor_id)
         {
             InitializeComponent();
             this.doktor_id = doktor_id;
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            timer1.Start();
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -68,6 +72,7 @@ namespace HastaneOtomasyon
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            //if (textBox1.Text == "") { hastaListele();return; }
             hastaara();
         }
 
@@ -112,20 +117,38 @@ namespace HastaneOtomasyon
         }
         public void hastaara()
         {
+            dataGridView1.Rows.Clear();
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "select * from hastalar where bolum_id=@bolum_id and tc_no like @tcno";
+                    string query = "SELECT * FROM hastalar WHERE bolum_id = @bolum_id AND CAST(tc_no AS CHAR) LIKE @tcno";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@bolum_id", bolum);
-                        cmd.Parameters.AddWithValue("@tc_no", "%" + textBox1.Text + "%");
+                        cmd.Parameters.AddWithValue("@tcno", "%" + textBox1.Text.Trim() + "%");
+                        using (MySqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            while (rdr.Read())
+                            {
+                                Hasta hasta = new Hasta
+                                {
+                                    hasta_id = rdr.GetInt32("hasta_id"),
+                                    ad = rdr.GetString("ad"),
+                                    soyad = rdr.GetString("soyad"),
+                                    tc_no = rdr.GetDecimal("tc_no")
+                                };
+                                dataGridView1.Rows.Add(hasta.hasta_id, hasta.ad, hasta.soyad, hasta.tc_no);
+                            }
+                        }
                     }
                 }
             }
-            catch (Exception ex) { MessageBox.Show("Hata" + ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
         }
         public void hastaListele()
         {
@@ -198,6 +221,15 @@ namespace HastaneOtomasyon
             {
                 e.Handled = true;
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(KırmızıMı)
+            {
+                label4.BackColor = Color.Red;
+            }
+            else { label4.BackColor = Color.Transparent; }
         }
     }
 }

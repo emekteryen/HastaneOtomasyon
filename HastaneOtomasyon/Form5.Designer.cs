@@ -52,17 +52,17 @@
             // 
             // button1
             // 
-            button1.Location = new Point(424, 194);
+            button1.Location = new Point(388, 98);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 2;
-            button1.Text = "button1";
+            button1.Text = "Kaydet";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(353, 96);
+            textBox1.Location = new Point(273, 57);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(320, 23);
             textBox1.TabIndex = 3;

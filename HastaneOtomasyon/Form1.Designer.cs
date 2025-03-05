@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             button1 = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             label2 = new Label();
             label3 = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
+            label1 = new Label();
             SuspendLayout();
             // 
             // button1
@@ -78,11 +81,25 @@
             label3.TabIndex = 8;
             label3.Text = "Şifre";
             // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(71, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(79, 15);
+            label1.TabIndex = 9;
+            label1.Text = "GİRİŞ SAYFASI";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(240, 238);
+            Controls.Add(label1);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(textBox2);
@@ -102,5 +119,7 @@
         private TextBox textBox2;
         private Label label2;
         private Label label3;
+        private System.Windows.Forms.Timer timer1;
+        private Label label1;
     }
 }

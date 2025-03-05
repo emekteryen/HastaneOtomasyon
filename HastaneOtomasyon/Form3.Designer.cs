@@ -35,6 +35,7 @@
             dataGridView2 = new DataGridView();
             label4 = new Label();
             label5 = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -100,11 +101,22 @@
             label5.TabIndex = 7;
             label5.Text = "label5";
             // 
+            // button1
+            // 
+            button1.Location = new Point(12, 555);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 8;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1012, 586);
+            Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(dataGridView2);
@@ -129,5 +141,6 @@
         private DataGridView dataGridView2;
         private Label label4;
         private Label label5;
+        private Button button1;
     }
 }

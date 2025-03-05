@@ -116,5 +116,32 @@ namespace HastaneOtomasyon
             }
         }
 
+        public void button1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentCell != null)
+            {
+                int secim = dataGridView1.CurrentCell.RowIndex;
+                randevusil(secim);
+            }
+            else { MessageBox.Show("Hata"); }
+        }
+        public void randevusil(int secim)
+        {
+            try
+            {
+                DateTime tarih = Convert.ToDateTime(dataGridView1.Rows[secim].Cells["randevu_tarihi"].Value.ToString());
+                using (MySqlConnection con = new MySqlConnection(constr))
+                {
+                    con.Open();
+                    string query = "delete from randevular where randevu_tarihi=@randevu_tarihi";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ranedvu_tarihi",tarih);
+                    }
+                }
+            }
+            catch(Exception ex)
+            { MessageBox.Show(ex.Message); }
+        }
     }
 }

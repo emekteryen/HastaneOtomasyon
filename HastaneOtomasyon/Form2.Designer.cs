@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             button1 = new Button();
             dataGridView1 = new DataGridView();
             hasta_id = new DataGridViewTextBoxColumn();
@@ -42,6 +43,7 @@
             button3 = new Button();
             button4 = new Button();
             textBox1 = new TextBox();
+            timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -51,7 +53,7 @@
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 2;
-            button1.Text = "button1";
+            button1.Text = "reçete yaz";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -122,11 +124,11 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(98, 116);
+            label4.Location = new Point(62, 142);
             label4.Name = "label4";
-            label4.Size = new Size(38, 15);
+            label4.Size = new Size(71, 15);
             label4.TabIndex = 11;
-            label4.Text = "label4";
+            label4.Text = "hasta arama";
             // 
             // button2
             // 
@@ -134,7 +136,7 @@
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 12;
-            button2.Text = "button2";
+            button2.Text = "hasta bilgi";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -144,7 +146,7 @@
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 13;
-            button3.Text = "button3";
+            button3.Text = "randevu ver";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -154,7 +156,7 @@
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 14;
-            button4.Text = "button4";
+            button4.Text = "hasta ekle";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -166,6 +168,10 @@
             textBox1.TabIndex = 15;
             textBox1.TextChanged += textBox1_TextChanged;
             textBox1.KeyPress += textBox1_KeyPress;
+            // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
             // 
             // Form2
             // 
@@ -205,5 +211,6 @@
         private DataGridViewTextBoxColumn soyad;
         private DataGridViewTextBoxColumn tc_no;
         private TextBox textBox1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

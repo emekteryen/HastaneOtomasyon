@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
             button2 = new Button();
             textBox1 = new TextBox();
             dataGridView1 = new DataGridView();
@@ -43,19 +42,9 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
-            // button1
-            // 
-            button1.Location = new Point(291, 53);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // button2
             // 
-            button2.Location = new Point(694, 54);
+            button2.Location = new Point(552, 54);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 3;
@@ -75,7 +64,7 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ilac_id2, ilac_ad2, ilac_adet2 });
-            dataGridView1.Location = new Point(415, 83);
+            dataGridView1.Location = new Point(273, 83);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(354, 333);
             dataGridView1.TabIndex = 7;
@@ -135,13 +124,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(685, 450);
             Controls.Add(comboBox1);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
             Controls.Add(textBox1);
             Controls.Add(button2);
-            Controls.Add(button1);
             Name = "Form4";
             Text = "Form4";
             Load += Form4_Load;
@@ -152,7 +140,6 @@
         }
 
         #endregion
-        private Button button1;
         private Button button2;
         private TextBox textBox1;
         private DataGridView dataGridView1;
