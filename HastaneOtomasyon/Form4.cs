@@ -1,4 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Crypto;
 using System;
 using System.Collections.Generic;
@@ -35,6 +38,7 @@ namespace HastaneOtomasyon
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            yazdır();
             receteyaz();
         }
         private void button1_Click(object sender, EventArgs e)
@@ -175,6 +179,31 @@ namespace HastaneOtomasyon
             {
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
             }
+        }
+        public void yazdır()
+        {
+            string outputFilePath = "C:\\Users\\Emek\\Documents\\recete.pdf";
+            using (var writer = new PdfWriter(outputFilePath))
+            {
+                using (var pdf = new PdfDocument(writer))
+                {
+                    var document = new Document(pdf);
+                    document.Add(new Paragraph("Emek Hastanesi"));
+                    document.Add(new Paragraph("REÇETE"));
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Cells["ilac_ad2"].Value != null && row.Cells["ilac_adet2"] !=null)
+                        {
+                            string ilacAd = row.Cells["ilac_ad2"].Value.ToString();
+                            string ilacaded = row.Cells["ilac_adet2"].Value.ToString();
+                            document.Add(new Paragraph(ilacAd + " Adet: " + ilacaded));                           
+                        }
+                    }
+                    string tarih = Convert.ToString(DateTime.Now);
+                    document.Add(new Paragraph(tarih));
+                }
+            }
+            MessageBox.Show("PDF dosyası başarıyla oluşturuldu!");
         }
     }
 }

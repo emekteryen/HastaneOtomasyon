@@ -1,4 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +31,7 @@ namespace HastaneOtomasyon
 
         private void button1_Click(object sender, EventArgs e)
         {
+            yazdır();
             kaydet();
         }
         public void kaydet()
@@ -40,9 +44,9 @@ namespace HastaneOtomasyon
                     string query = "insert into tani (hasta_id,tani_verisi,tani_tarihi) values (@hasta_id,@tani_verisi,@tani_tarihi)";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@hasta_id",hastaid);
-                        cmd.Parameters.AddWithValue("tani_verisi",);
-                        cmd.Parameters.AddWithValue("tani_tarihi",DateTime.Now);
+                        cmd.Parameters.AddWithValue("@hasta_id", hastaid);
+                        cmd.Parameters.AddWithValue("tani_verisi", richTextBox1.Text);
+                        cmd.Parameters.AddWithValue("tani_tarihi", DateTime.Now);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -51,5 +55,22 @@ namespace HastaneOtomasyon
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+        public void yazdır()
+        {
+            string outputFilePath = "C:\\Users\\Emek\\Documents\\tani.pdf";
+            using (var writer = new PdfWriter(outputFilePath))
+            {
+                using (var pdf = new PdfDocument(writer))
+                {
+                    var document = new Document(pdf);
+                    document.Add(new Paragraph("Emek Hastanesİ"));
+                    document.Add(new Paragraph("TANI RAPORU"));
+                    document.Add(new Paragraph("TANINIZ: " + richTextBox1.Text));
+                    document.Add(new Paragraph(Convert.ToString(DateTime.Now)));
+                }
+            }
+            MessageBox.Show("PDF dosyası başarıyla oluşturuldu!");
+        }
     }
 }
+    
