@@ -14,9 +14,10 @@ namespace HastaneOtomasyon
     public partial class Form2 : Form
     {
         private string connectionString = "server=localhost;database=hastane;user=root;pwd=;";
-        int doktor_id;
-        int bolum;
+        int doktor_id, bolum, hastaid, rowIndex;
         private bool KırmızıMı;
+        string h_ad,h_soyad;
+        decimal h_tcno;
         public Form2(int doktor_id)
         {
             InitializeComponent();
@@ -37,8 +38,9 @@ namespace HastaneOtomasyon
         {
             if (dataGridView1.CurrentCell != null)
             {
-                int rowIndex = dataGridView1.CurrentCell.RowIndex;
-                receteac(rowIndex);
+                rowIndex = dataGridView1.CurrentCell.RowIndex;
+                secilenhasta(rowIndex);
+                receteac(hastaid);
             }
             else
             {
@@ -50,35 +52,45 @@ namespace HastaneOtomasyon
         {
             if (dataGridView1.CurrentCell != null)
             {
-                int rowIndex = dataGridView1.CurrentCell.RowIndex;
-                hastabilgi(rowIndex);
+                rowIndex = dataGridView1.CurrentCell.RowIndex;
+                secilenhasta(rowIndex);
+                hastabilgi(hastaid);
             }
             else
             {
                 MessageBox.Show("Lütfen geçerli bir satır seçin");
             }
         }
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentCell != null)
             {
-                int rowIndex = dataGridView1.CurrentCell.RowIndex;
-                randevual(rowIndex);
+                rowIndex = dataGridView1.CurrentCell.RowIndex;
+                secilenhasta(rowIndex);
+                randevual(hastaid);
             }
             else
             {
                 MessageBox.Show("Lütfen geçerli bir satır seçiniz");
             }
         }
+        private async void button4_Click(object sender, EventArgs e)
+        {          
+            hastaekle();
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedCells != null)
+            {
+                rowIndex = dataGridView1.CurrentCell.RowIndex;
+                secilenhasta(rowIndex);
+                taniyaz(hastaid);
+            }
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             //if (textBox1.Text == "") { hastaListele();return; }
             hastaara();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            hastaekle();
         }
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -91,22 +103,19 @@ namespace HastaneOtomasyon
             if (e.RowIndex == -1) { return; }
             //hastabilgi(e.RowIndex);
         }
-        public void hastabilgi(int rowIndex)
+        public void hastabilgi(int hastaid)
         {
-            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
             //textBox3.Text = Convert.ToString(hastaid);
             Form3 form3 = new Form3(hastaid);
             form3.ShowDialog();
         }
-        public void receteac(int rowIndex)
+        public void receteac(int hastaid)
         {
-            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
             Form4 form4 = new Form4(hastaid);
             form4.ShowDialog();
         }
-        public void randevual(int rowIndex)
+        public void randevual(int hastaid)
         {
-            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
             Form5 form5 = new Form5(hastaid, bolum, doktor_id);
             form5.ShowDialog();
         }
@@ -232,16 +241,17 @@ namespace HastaneOtomasyon
             else { label4.BackColor = Color.Transparent; }
             KırmızıMı = !KırmızıMı;
         }
-
-        private void button5_Click(object sender, EventArgs e)
+        public void taniyaz(int hastaid)
         {
-            if(dataGridView1.SelectedCells!=null) { int rowIndex= dataGridView1.CurrentCell.RowIndex; taniyaz(rowIndex); }
-        }
-        public void taniyaz(int rowIndex)
-        {
-            int hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
             Form7 form7 = new Form7(hastaid);
             form7.ShowDialog();
+        }
+        public void secilenhasta(int rowIndex)
+        {
+            hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
+            h_ad = dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString();
+            h_soyad = dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString();
+            h_tcno = decimal.Parse(dataGridView1.Rows[rowIndex].Cells["tc_no"].Value.ToString());
         }
     }
 }
