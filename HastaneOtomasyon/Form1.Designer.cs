@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             button1 = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             label2 = new Label();
             label3 = new Label();
-            timer1 = new System.Windows.Forms.Timer(components);
             label1 = new Label();
             SuspendLayout();
             // 
@@ -81,12 +79,6 @@
             label3.TabIndex = 8;
             label3.Text = "Şifre";
             // 
-            // timer1
-            // 
-            timer1.Enabled = true;
-            timer1.Interval = 500;
-            timer1.Tick += timer1_Tick;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -122,6 +114,5 @@
         private Label label2;
         private Label label3;
         private Label label1;
-        public System.Windows.Forms.Timer timer1;
     }
 }

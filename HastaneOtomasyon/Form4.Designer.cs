@@ -48,7 +48,7 @@
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 3;
-            button2.Text = "button2";
+            button2.Text = "Kaydet";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -69,7 +69,6 @@
             dataGridView1.Size = new Size(354, 333);
             dataGridView1.TabIndex = 7;
             dataGridView1.CellClick += dataGridView1_CellClick;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // ilac_id2
             // 

@@ -17,15 +17,17 @@ namespace HastaneOtomasyon
 {
     public partial class Form4 : Form
     {
-        int hastaid;
-        int rowIndex;
-        int ilac_adet;
-        int ilacadedi;
+        int hastaid,rowIndex,ilac_adet,ilacadedi;
+        string h_ad, h_soyad;
+        decimal h_tcno;
         private readonly string connectionString = "server=localhost;database=hastane;user=root;pwd=";
-        public Form4(int hastaid)
+        public Form4(int hastaid,string h_ad,string h_soyad,decimal h_tcno)
         {
             InitializeComponent();
             this.hastaid = hastaid;
+            this.h_ad = h_ad;
+            this.h_soyad = h_soyad;
+            this.h_tcno = h_tcno;
         }
 
         private void Form4_Load(object sender, EventArgs e)
@@ -41,11 +43,20 @@ namespace HastaneOtomasyon
             yazdır();
             receteyaz();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ilacadedi = int.Parse(comboBox1.SelectedItem.ToString());
         }
-
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int mevcut = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ilac_adet2"].Value);
+            dataGridView1.Rows[e.RowIndex].Cells["ilac_adet2"].Value = mevcut - 1;
+            int kalan = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ilac_adet2"].Value);
+            if (kalan == 0)
+            {
+                dataGridView1.Rows.RemoveAt(e.RowIndex);
+            }
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             ilacgetir();
@@ -159,27 +170,6 @@ namespace HastaneOtomasyon
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ilacadedi = int.Parse(comboBox1.SelectedItem.ToString());
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-                int mevcut = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ilac_adet2"].Value);
-            dataGridView1.Rows[e.RowIndex].Cells["ilac_adet2"].Value = mevcut- 1;
-            int kalan = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ilac_adet2"].Value);
-            if (kalan==0)
-            {
-                dataGridView1.Rows.RemoveAt(e.RowIndex);
-            }
-        }
         public void yazdır()
         {
             string outputFilePath = "C:\\Users\\Emek\\Documents\\recete.pdf";
@@ -190,6 +180,8 @@ namespace HastaneOtomasyon
                     var document = new Document(pdf);
                     document.Add(new Paragraph("Emek Hastanesi"));
                     document.Add(new Paragraph("REÇETE"));
+                    document.Add(new Paragraph("ADI: " + h_ad + " SOYADI: " + h_soyad));
+                    document.Add(new Paragraph("TC KİMLİK NUMARASI: " + h_tcno));
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
                         if (row.Cells["ilac_ad2"].Value != null && row.Cells["ilac_adet2"] !=null)

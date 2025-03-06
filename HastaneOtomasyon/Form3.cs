@@ -30,6 +30,16 @@ namespace HastaneOtomasyon
             recetegetir();
             tanigetir();
         }
+        public void button1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentCell != null)
+            {
+                int secim = dataGridView1.CurrentCell.RowIndex;
+                randevusil(secim);
+
+            }
+            else { MessageBox.Show("Hata"); }
+        }
         public void hastabilgi()
         {
             try
@@ -116,17 +126,6 @@ namespace HastaneOtomasyon
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        public void button1_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentCell != null)
-            {
-                int secim = dataGridView1.CurrentCell.RowIndex;
-                randevusil(secim);
-
-            }
-            else { MessageBox.Show("Hata"); }
         }
         public void randevusil(int secim)
         {

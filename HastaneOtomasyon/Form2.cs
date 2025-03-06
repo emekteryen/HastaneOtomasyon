@@ -22,9 +22,6 @@ namespace HastaneOtomasyon
         {
             InitializeComponent();
             this.doktor_id = doktor_id;
-            timer1.Interval = 1000;
-            timer1.Tick += timer1_Tick;
-            timer1.Start();
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -40,13 +37,12 @@ namespace HastaneOtomasyon
             {
                 rowIndex = dataGridView1.CurrentCell.RowIndex;
                 secilenhasta(rowIndex);
-                receteac(hastaid);
+                receteac(hastaid,h_ad,h_soyad,h_tcno);
             }
             else
             {
                 MessageBox.Show("Lütfen bir satır seçin!");
             }
-
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -84,7 +80,7 @@ namespace HastaneOtomasyon
             {
                 rowIndex = dataGridView1.CurrentCell.RowIndex;
                 secilenhasta(rowIndex);
-                taniyaz(hastaid);
+                taniyaz(hastaid,h_ad,h_soyad,h_tcno);
             }
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -92,26 +88,28 @@ namespace HastaneOtomasyon
             //if (textBox1.Text == "") { hastaListele();return; }
             hastaara();
         }
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.RowIndex == -1) return;
-            receteac(e.RowIndex);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        public void secilenhasta(int rowIndex)
         {
-            if (e.RowIndex == -1) { return; }
-            //hastabilgi(e.RowIndex);
+            hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
+            h_ad = dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString();
+            h_soyad = dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString();
+            h_tcno = decimal.Parse(dataGridView1.Rows[rowIndex].Cells["tc_no"].Value.ToString());
         }
         public void hastabilgi(int hastaid)
         {
-            //textBox3.Text = Convert.ToString(hastaid);
             Form3 form3 = new Form3(hastaid);
             form3.ShowDialog();
         }
-        public void receteac(int hastaid)
+        public void receteac(int hastaid,string h_ad,string h_soyad,decimal h_tcno)
         {
-            Form4 form4 = new Form4(hastaid);
+            Form4 form4 = new Form4(hastaid,h_ad,h_soyad,h_tcno);
             form4.ShowDialog();
         }
         public void randevual(int hastaid)
@@ -123,6 +121,11 @@ namespace HastaneOtomasyon
         {
             Form6 form6 = new Form6(bolum);
             form6.ShowDialog();
+        }
+        public void taniyaz(int hastaid, string h_ad, string h_soyad,decimal h_tcno)
+        {
+            Form7 form7 = new Form7(hastaid,h_ad,h_soyad,h_tcno);
+            form7.ShowDialog();
         }
         public void hastaara()
         {
@@ -193,7 +196,6 @@ namespace HastaneOtomasyon
                 MessageBox.Show(ex.Message);
             }
         }
-
         public void doktorbilgi()
         {
             try
@@ -222,36 +224,6 @@ namespace HastaneOtomasyon
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (KırmızıMı)
-            {
-                label4.BackColor = Color.Red;
-            }
-            else { label4.BackColor = Color.Transparent; }
-            KırmızıMı = !KırmızıMı;
-        }
-        public void taniyaz(int hastaid)
-        {
-            Form7 form7 = new Form7(hastaid);
-            form7.ShowDialog();
-        }
-        public void secilenhasta(int rowIndex)
-        {
-            hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
-            h_ad = dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString();
-            h_soyad = dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString();
-            h_tcno = decimal.Parse(dataGridView1.Rows[rowIndex].Cells["tc_no"].Value.ToString());
         }
     }
 }

@@ -30,6 +30,13 @@ namespace HastaneOtomasyon
         {
 
         }
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
         public void ekle()
         {
             try
@@ -54,14 +61,6 @@ namespace HastaneOtomasyon
             catch (Exception ex)
             {
                 MessageBox.Show("Hata " + ex.Message);
-            }
-        }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
             }
         }
     }

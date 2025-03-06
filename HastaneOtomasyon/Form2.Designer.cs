@@ -66,8 +66,6 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(423, 274);
             dataGridView1.TabIndex = 7;
-            dataGridView1.CellClick += dataGridView1_CellClick;
-            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
             // hasta_id
             // 
@@ -169,10 +167,6 @@
             textBox1.TabIndex = 15;
             textBox1.TextChanged += textBox1_TextChanged;
             textBox1.KeyPress += textBox1_KeyPress;
-            // 
-            // timer1
-            // 
-            timer1.Tick += timer1_Tick;
             // 
             // button5
             // 

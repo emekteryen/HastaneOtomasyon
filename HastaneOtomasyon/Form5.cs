@@ -45,10 +45,6 @@ namespace HastaneOtomasyon
         {
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd-MM-yyyy";
-            //dateTimePicker2.Format = DateTimePickerFormat.Time;
-            //eğer sistem saatini kullanmak istemezsen aşağıdakini kullanabilirsin.
-            //yukardaki sistem saatin 12 li olursam eğer a.m p.m. cinsinden ayarlar
-            //aşağıdaki ise kenin saat düzlemi verdiğinden odlayı her türlü 24 saat olarak ayarlar
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.CustomFormat = "HH:mm";
             dateTimePicker2.ShowUpDown = true;

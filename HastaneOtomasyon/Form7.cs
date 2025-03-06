@@ -17,11 +17,16 @@ namespace HastaneOtomasyon
     public partial class Form7 : Form
     {
         int hastaid;
+        string h_ad, h_soyad;
+        decimal h_tcno;
         private readonly string constr = "server=localhost;database=hastane;user=root;pwd=";
-        public Form7(int hastaid)
+        public Form7(int hastaid, string h_ad,string h_soyad,decimal h_tcno)
         {
             InitializeComponent();
             this.hastaid = hastaid;
+            this.h_ad = h_ad;
+            this.h_soyad = h_soyad;
+            this.h_tcno = h_tcno;
         }
 
         private void Form7_Load(object sender, EventArgs e)
@@ -65,6 +70,8 @@ namespace HastaneOtomasyon
                     var document = new Document(pdf);
                     document.Add(new Paragraph("Emek Hastanesİ"));
                     document.Add(new Paragraph("TANI RAPORU"));
+                    document.Add(new Paragraph("ADI: " + h_ad + " SOYADI: "+h_soyad));
+                    document.Add(new Paragraph("TC KİMLİK NUMARASI: " + h_tcno));
                     document.Add(new Paragraph("TANINIZ: " + richTextBox1.Text));
                     document.Add(new Paragraph(Convert.ToString(DateTime.Now)));
                 }

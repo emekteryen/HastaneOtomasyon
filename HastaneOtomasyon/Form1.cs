@@ -7,7 +7,6 @@ namespace HastaneOtomasyon
     {
         private readonly string connectionStr = "server=localhost;database=hastane;user=root;pwd=";
         int doktor_id;
-        private bool kýrmýzýMý = false;
         public Form1()
         {
             InitializeComponent();
@@ -20,10 +19,6 @@ namespace HastaneOtomasyon
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
-            timer1.Interval = 1000;
-            timer1.Tick += timer1_Tick;
-            timer1.Start();
         }
         public async void giris()
         {
@@ -60,24 +55,12 @@ namespace HastaneOtomasyon
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //label1.BackColor = kýrmýzýMý ? Color.Transparent : Color.Red;
-            if (kýrmýzýMý)
-            {
-                label1.BackColor = Color.Transparent;
-            }
-            else { label1.BackColor = Color.Red; }
-            kýrmýzýMý=!kýrmýzýMý;
         }
     }
 }
