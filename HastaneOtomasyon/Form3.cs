@@ -160,7 +160,7 @@ namespace HastaneOtomasyon
                 using (MySqlConnection con = new MySqlConnection(constr))
                 {
                     con.Open();
-                    string query = "select * from tani where hasta_id=@hasta_id";
+                    string query = "select tani_verisi,tani_tarihi from tani where hasta_id=@hasta_id";
                     using(MySqlCommand cm = new MySqlCommand(query, con))
                     {
                         cm.Parameters.AddWithValue("@hasta_id", hastaid);

@@ -15,7 +15,6 @@ namespace HastaneOtomasyon
     {
         private string connectionString = "server=localhost;database=hastane;user=root;pwd=;";
         int doktor_id, bolum, hastaid, rowIndex;
-        private bool KırmızıMı;
         string h_ad,h_soyad;
         decimal h_tcno;
         public Form2(int doktor_id)
@@ -98,8 +97,8 @@ namespace HastaneOtomasyon
         public void secilenhasta(int rowIndex)
         {
             hastaid = int.Parse(dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString());
-            h_ad = dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString();
-            h_soyad = dataGridView1.Rows[rowIndex].Cells["hasta_id"].Value.ToString();
+            h_ad = dataGridView1.Rows[rowIndex].Cells["ad"].Value.ToString();
+            h_soyad = dataGridView1.Rows[rowIndex].Cells["soyad"].Value.ToString();
             h_tcno = decimal.Parse(dataGridView1.Rows[rowIndex].Cells["tc_no"].Value.ToString());
         }
         public void hastabilgi(int hastaid)

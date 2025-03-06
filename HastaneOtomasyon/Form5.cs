@@ -53,6 +53,7 @@ namespace HastaneOtomasyon
         private void button1_Click(object sender, EventArgs e)
         {
             saatal();
+            if(randevusaat < DateTime.Now) { MessageBox.Show("Geçmiş bir tarihe randevu veremezsiniz!");return; }
             randevual();
         }
         public void saatal()

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             button1 = new Button();
             dataGridView1 = new DataGridView();
             hasta_id = new DataGridViewTextBoxColumn();
@@ -43,7 +42,6 @@
             button3 = new Button();
             button4 = new Button();
             textBox1 = new TextBox();
-            timer1 = new System.Windows.Forms.Timer(components);
             button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -217,7 +215,6 @@
         private DataGridViewTextBoxColumn soyad;
         private DataGridViewTextBoxColumn tc_no;
         private TextBox textBox1;
-        private System.Windows.Forms.Timer timer1;
         private Button button5;
     }
 }

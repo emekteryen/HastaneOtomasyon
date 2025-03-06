@@ -31,7 +31,9 @@ namespace HastaneOtomasyon
 
         private void Form7_Load(object sender, EventArgs e)
         {
-
+            label1.Text = h_ad;
+            label2.Text = h_soyad;
+            label3.Text = Convert.ToString(h_tcno);
         }
 
         private void button1_Click(object sender, EventArgs e)

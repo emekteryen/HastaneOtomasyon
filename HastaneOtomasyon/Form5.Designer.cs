@@ -53,7 +53,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(388, 98);
+            button1.Location = new Point(95, 139);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 2;
@@ -63,16 +63,17 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(273, 57);
+            textBox1.Enabled = false;
+            textBox1.Location = new Point(30, 108);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(320, 23);
+            textBox1.Size = new Size(226, 23);
             textBox1.TabIndex = 3;
             // 
             // Form5
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(750, 174);
+            ClientSize = new Size(315, 174);
             Controls.Add(textBox1);
             Controls.Add(button1);
             Controls.Add(dateTimePicker2);

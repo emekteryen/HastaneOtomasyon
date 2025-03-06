@@ -110,7 +110,7 @@
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 8;
-            button1.Text = "button1";
+            button1.Text = "Randevu sil";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -127,9 +127,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(879, 49);
             label6.Name = "label6";
-            label6.Size = new Size(38, 15);
+            label6.Size = new Size(45, 15);
             label6.TabIndex = 10;
-            label6.Text = "label6";
+            label6.Text = "Tanılar:";
             // 
             // Form3
             // 
